@@ -18,19 +18,23 @@ selected_case = test_data[case_id]
 # Show original transcript 
 st.subheader("Transcript")
 st.write('Patient label: ' + selected_case['label']) 
-
-transcript = selected_case['transcript']
-st.text_area("", value=transcript, height=300, key='transcript')
+# st.text_area("", value=selected_case['transcript'], height=300, key='transcript')
+with st.container(height=300, key='transcript'):
+    st.markdown(selected_case['transcript'])
 
 # Show generated SOAP note on left, ground truth SOAP note on right
 gen_col, gt_col = st.columns(2)
 with gen_col: 
     st.subheader("Generated SOAP Note")
-    st.text_area("", selected_case["generated_soap"], height=400, key='gen_col')
+    # st.text_area("", value=selected_case["generated_soap"], height=400, key='gen_col')
+    with st.container(height=300, key='gen_soap'):
+        st.markdown(selected_case['generated_soap'])
 
 with gt_col: 
     st.subheader("Ground Truth")
-    st.text_area("", selected_case["gt_soap"], height=400, key='gt_col')
+    # st.text_area("", value=selected_case["gt_soap"], height=400, key='gt_col')
+    with st.container(height=300, key='gt_soap'):
+        st.markdown(selected_case['gt_soap'])
 
 
 # Structural eval to check some basic things, like if all SOAP sections exist and word and char count
