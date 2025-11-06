@@ -1,0 +1,5 @@
+Explore more ideas for more reference free evals
+Get at least one reference containing eval 
+How to compare a generated note with a theoretical new note 
+prompting techniques and theory (system, assistant, etc) how transformers work
+Why you made certain decisions and why you stopped on certain 

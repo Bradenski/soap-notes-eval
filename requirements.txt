@@ -1,0 +1,6 @@
+streamlit
+sentence-transformers
+torch
+anthropic
+python-dotenv
+transformers
