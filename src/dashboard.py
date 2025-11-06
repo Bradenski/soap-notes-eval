@@ -4,9 +4,6 @@ from evals.similarity_eval import calculate_similarity
 from evals.llm_as_judge_eval import LLMAsJudgeEval
 from evals.structure_eval import structure_eval
 import os 
-from dotenv import load_dotenv
-
-load_dotenv()
 
 test_data = load_dataset()
 
@@ -46,7 +43,15 @@ st.markdown(
     unsafe_allow_html=True
     )
 
-run_llm_eval = LLMAsJudgeEval(api_key=os.getenv('ANTHROPIC_API_KEY'))
+# load API key localally with dotenv or from Streamlit secrets
+try: 
+    api_key = st.secrets['ANTHROPIC_API_KEY']
+except: 
+    from dotenv import load_dotenv
+    load_dotenv()
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+
+run_llm_eval = LLMAsJudgeEval(api_key=api_key)
 
 if st.button("Run LLM as Judge Eval"): 
     result = run_llm_eval.evaluate(transcript=selected_case['transcript'], generated_note=selected_case['generated_soap'])
